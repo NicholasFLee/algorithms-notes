@@ -49,7 +49,7 @@ class Counter {
     }
 }
 
-public class Tests {
+public class C121 {
     public static void main(String[] args) {
         // 在这里声明了一个 `Counter` 类型的变量名为 `counter`, 这个变量是放在`栈`里面的.
         // 这种在函数内声明的变量叫做局部变量.
@@ -73,7 +73,7 @@ public class Tests {
 
         // 例子2: 还有一种常见的用法是把一个对象作为参数, 传到另一个方法中使用.
         Counter c2 = new Counter("ctr2");
-        Tests.use(c2);
+        C121.use(c2);
         System.out.println(c2);     // 输出: counter ctr2 is 1.
         // 如同上面的例子, c2 的状态同样被改变了, 所以这个时候传值和 例子1 中是一样的.
 
