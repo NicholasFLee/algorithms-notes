@@ -34,6 +34,7 @@ class Date {
         year = y;
     }
 
+    // 因为这里的属性都是私有类型, 所以可以提供几个 public 方法获取属性的值.
     public int month() {
         return month;
     }
