@@ -57,8 +57,9 @@ class Stack<T> implements Iterable {
 public class C131 {
     public static void main(String[] args) {
         // stackTest();
-        parentheses("{[()]()}");
-        parentheses("[(])");
+        // parentheses("{[()]()}");
+        // parentheses("[(])");
+        fillUpInfixExpression("1+2)*3-4)*5-6)))");
     }
 
     public static void stackTest() {
@@ -99,4 +100,33 @@ public class C131 {
         System.out.println("true");
         return true;
     }
+
+    // 练习 1.3.9
+    // 用两个栈, 一个放`数字`, 一个放`运算符`, 遇到`右括号`就 pop 两个`数字栈`和一个`运算符栈`运算完放入`数字栈`
+    // 运算: 数字前后加括号
+    public static String fillUpInfixExpression(String ie) {
+        Stack<String> digits = new Stack<>();
+        Stack<String> operators = new Stack<>();
+        String res = "";
+        for (char c : ie.toCharArray()) {
+            String s = Character.toString(c);
+            if (isOperator(s)) {
+                operators.push(s);
+            } else if (s.equals(")")) {
+                String second = digits.pop();
+                String first = digits.pop();
+                String operator = operators.pop();
+                res = "(" + first + operator + second + ")";
+                System.out.println(res);
+                digits.push(res);
+            } else {
+                digits.push(s);
+            }
+        }
+        return res;
+    }
+    public static boolean isOperator(String s) {
+        return (s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/"));
+    }
+
 }
