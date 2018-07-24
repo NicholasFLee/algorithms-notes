@@ -60,6 +60,7 @@ public class C131 {
         // parentheses("{[()]()}");
         // parentheses("[(])");
         fillUpInfixExpression("1+2)*3-4)*5-6)))");
+        infixToPostfix("((1+2)*((3-4)*(5-6)))");
     }
 
     public static void stackTest() {
@@ -110,23 +111,57 @@ public class C131 {
         String res = "";
         for (char c : ie.toCharArray()) {
             String s = Character.toString(c);
-            if (isOperator(s)) {
-                operators.push(s);
-            } else if (s.equals(")")) {
+            if (isOperator(s)) operators.push(s);
+            else if (s.equals(")")) {
                 String second = digits.pop();
                 String first = digits.pop();
                 String operator = operators.pop();
                 res = "(" + first + operator + second + ")";
-                System.out.println(res);
                 digits.push(res);
             } else {
                 digits.push(s);
             }
         }
+        System.out.println(res);
         return res;
     }
     public static boolean isOperator(String s) {
         return (s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/"));
+    }
+
+    // 练习 1.3.10
+    public static String infixToPostfix(String in) {
+        Stack<String> digits = new Stack<>();
+        Stack<String> operators = new Stack<>();
+        String res = "";
+        for (char c : in.toCharArray()) {
+            String s = Character.toString(c);
+            if (isOperator(s)) operators.push(s);
+            else if (Character.isDigit(c)) digits.push(s);
+            else if (s.equals(")")) {
+                String second = digits.pop();
+                String first = digits.pop();
+                String operator = operators.pop();
+                res = first + second + operator;
+                digits.push(res);
+            }
+        }
+        System.out.println(res);
+        return res;
+    }
+
+    public static String evaluatePostfix(String in) {
+        Stack<String> digits = new Stack<>();
+        Stack<String> operators = new Stack<>();
+        for (char c : in.toCharArray()) {
+            String s = Character.toString(c);
+            if (isOperator(s)) operators.push(s);
+            else {
+                digits.push(s);
+                
+            }
+        }
+        return "";
     }
 
 }
