@@ -60,7 +60,7 @@ public class C131 {
         // parentheses("{[()]()}");
         // parentheses("[(])");
         fillUpInfixExpression("1+2)*3-4)*5-6)))");
-        infixToPostfix("((1+2)*((3-4)*(5-6)))");
+        evaluatePostfix(infixToPostfix("((1+2)*((3-4)*(5-6)))"));
     }
 
     public static void stackTest() {
@@ -150,18 +150,37 @@ public class C131 {
         return res;
     }
 
-    public static String evaluatePostfix(String in) {
+    // 练习 1.3.11
+    public static int evaluatePostfix(String in) {
         Stack<String> digits = new Stack<>();
-        Stack<String> operators = new Stack<>();
+        int res = 0;
         for (char c : in.toCharArray()) {
             String s = Character.toString(c);
-            if (isOperator(s)) operators.push(s);
+            if (!isOperator(s)) digits.push(s);
             else {
-                digits.push(s);
-                
+                String second = digits.pop();
+                String first = digits.pop();
+                res = calculate(first, second, s);
+                digits.push(Integer.toString(res));
             }
         }
-        return "";
+        System.out.println(res);
+        return res;
+    }
+    public static int calculate(String a, String b, String op) {
+        int i = Integer.parseInt(a);
+        int j = Integer.parseInt(b);
+        switch (op) {
+            case "+":
+                return i + j;
+            case "-":
+                return i - j;
+            case "*":
+                return i * j;
+            case "/":
+                return i / j;
+        }
+        return 0;
     }
 
 }
