@@ -1,6 +1,20 @@
 import java.util.Iterator;
 
 class Stack<T> implements Iterable {
+
+    // public static Stack<String> copy(Stack<String> s) {
+    //     Iterator i = s.iterator();
+    //     Stack<String> copied = new Stack<String>();
+    //     copied.N = s.N;
+    //     Stack<String>.Node first = new Stack<String>.Node();
+    //     while (i.hasNext()) {
+    //         Stack<String>.Node n = new Stack<String>.Node();
+    //         Stack<String>.Node on = i.next();
+    //         n.item = on.item;
+    //         first.item = n;
+    //     }
+    // }
+
     private class Node {
         T item;
         Node next;
