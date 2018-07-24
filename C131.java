@@ -76,6 +76,7 @@ public class C131 {
         }
         return false;
     }
+    
     // 练习 1.3.4
     public static boolean parentheses(String ps) {
         Stack<String> left = new Stack<String>();
