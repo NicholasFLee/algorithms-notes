@@ -165,9 +165,9 @@ class Deque<T> implements Iterable {
 // Dynamic array implement
 class Deque2<T> {
     private T[] dq;
-    private int cap = 6;
-    private int start = 5;
-    private int end = 5;
+    private int cap = 4;
+    private int start = 2;
+    private int end = 2;
     private int N = 0;
 
     public Deque2() {
@@ -180,6 +180,7 @@ class Deque2<T> {
 
     public void pushLeft(T t) {
         if (start < 0) {
+            System.out.println("resized from left");
             resizeArray();
         }
         dq[start--] = t;
@@ -197,6 +198,7 @@ class Deque2<T> {
 
     public void pushRight(T t) {
         if (end+1 == dq.length) {
+            System.out.println("resized from right");
             resizeArray();
         }
         dq[++end] = t;
@@ -215,13 +217,13 @@ class Deque2<T> {
     // auto grow
     private void resizeArray() {
         cap *= 2;
-        int s = (cap/2) - (N/2);
-        start = s;
-        end = s + N;
+        int newStart = (cap/2) - (N/2);
         T[] newArray = (T[]) new Object[cap];
-        for (int i = 0, j = s; i < N; i++, j++) {
+        for (int i = start + 1, j = newStart; i <= end; i++, j++) {
             newArray[j] = dq[i];
         }
+        start = newStart - 1;
+        end = newStart + N - 1;
         dq = newArray;
     }
 
