@@ -57,8 +57,8 @@ class Steque<T> {
 }
 
 
-// 1.3.33 Deque
-// 双向链表实现
+// 1.3.33.1 Deque
+// Double ended linked list implement
 class Deque<T> implements Iterable {
 
     private Node<T> first;
@@ -161,10 +161,86 @@ class Deque<T> implements Iterable {
     }
 }
 
-public class C132 { 
+// 1.3.33.2 Deque
+// Dynamic array implement
+class Deque2<T> {
+    private T[] dq;
+    private int cap = 6;
+    private int start = 5;
+    private int end = 5;
+    private int N = 0;
+
+    public Deque2() {
+        dq = (T[]) new Object[cap];
+    }
+
+    public boolean isEmpty() { return N == 0; }
+
+    public int size() { return N; }
+
+    public void pushLeft(T t) {
+        if (start < 0) {
+            resizeArray();
+        }
+        dq[start--] = t;
+        N++;
+    }
+
+    public T popLeft() {
+        if ((end - start) == 0) {
+            return null;
+        }
+        T res = dq[++start];
+        N--;
+        return res;
+    }
+
+    public void pushRight(T t) {
+        if (end+1 == dq.length) {
+            resizeArray();
+        }
+        dq[++end] = t;
+        N++;
+    }
+
+    public T popRight() {
+        if ((end - start) == 0) {
+            return null;
+        }
+        T res = dq[--end];
+        N--;
+        return res;
+    }
+
+    // auto grow
+    private void resizeArray() {
+        cap *= 2;
+        int s = (cap/2) - (N/2);
+        start = s;
+        end = s + N;
+        T[] newArray = (T[]) new Object[cap];
+        for (int i = 0, j = s; i < N; i++, j++) {
+            newArray[j] = dq[i];
+        }
+        dq = newArray;
+    }
+
+    @Override
+    public String toString() {
+        String res = "";
+        for (int i = 0; i < dq.length; i++) {
+            res += dq[i];
+            res += "\n";
+        }
+        return res;
+    }
+}
+
+public class C132 {
     public static void main(String[] args) {
         // stequeTest();
-        dequeTest();
+        // dequeTest();
+        deque2Test();
     }
 
     public static void stequeTest() {
@@ -184,6 +260,18 @@ public class C132 {
         deque.pushLeft("lll");
         deque.popRight();
         deque.popLeft();
+        System.out.println(deque);
+    }
+
+    public static void deque2Test() {
+        Deque2<String> deque = new Deque2();
+        deque.pushLeft("1");
+        deque.pushLeft("2");
+        deque.pushRight("3");
+        deque.pushRight("4");
+        deque.pushRight("5");
+        deque.pushRight("6");
+        deque.pushRight("7");
         System.out.println(deque);
     }
 }
