@@ -1,4 +1,7 @@
 import java.util.Iterator;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 class RandomBag<T> implements Iterable {
 
@@ -19,6 +22,7 @@ class RandomBag<T> implements Iterable {
             }
         }
         array[N] = t;
+        N++;
     }
 
     @Override
@@ -35,8 +39,18 @@ class RandomBag<T> implements Iterable {
             for (int i = 0; i < N; i++) {
                 randomArray[i] = array[i];
             }
-            if (Math.random() > Math.random()) {
+            shuffleArray(randomArray);
+        }
 
+        private void shuffleArray(T[] ar) {
+            // If running on Java 6 or older, use `new Random()` on RHS here
+            Random rnd = ThreadLocalRandom.current();
+            for (int i = ar.length - 1; i > 0; i--) {
+                int index = rnd.nextInt(i + 1);
+                // Simple swap
+                T a = ar[index];
+                ar[index] = ar[i];
+                ar[i] = a;
             }
         }
 
@@ -55,6 +69,13 @@ class RandomBag<T> implements Iterable {
 
 public class C133 {
     public static void main(String[] args) {
-        
+        RandomBag<Integer> rb = new RandomBag<>();
+        for (int i = 0; i < 10; i++) {
+            rb.add(i);
+        }
+        Iterator i = rb.iterator();
+        while (i.hasNext()) {
+            System.out.println(i.next());
+        }
     }
 }
