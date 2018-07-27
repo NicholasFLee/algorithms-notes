@@ -20,7 +20,7 @@ class Stack<T> implements Iterable {
         Node next;
     }
     
-    private Node first;
+    private Node<T> first;
     private int N = 0;
 
     public void push(T t) {
