@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 // 1.4.27
 class Staqueue<T> {
     private Stack<T> s1;
