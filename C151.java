@@ -1,9 +1,9 @@
-// Union find
-class UF {
+// Quick find
+class QF {
     private int[] id;
     private int count;
 
-    public UF(int N) {
+    public QF(int N) {
         count = N;
         id = new int[N];
         for (int i = 0; i < N; i++) {
@@ -26,12 +26,12 @@ class UF {
     }
 }
 
-// Quick find
-class QF {
+// Quick Union
+class QU {
     private int[] id;
     private int count;
 
-    public QF(int N) {
+    public QU(int N) {
         count = N;
         id = new int[N];
         for (int i = 0; i < N; i++) {
@@ -57,17 +57,8 @@ class QF {
 
 public class C151 {
     public static void main(String[] args) {
-        ufTest();
         qfTest();
-    }
-
-    public static void ufTest() {
-        UF uf = new UF(10);
-        uf.union(0, 2);
-        uf.union(2, 3);
-        uf.union(4, 5);
-        System.out.println(uf.connected(0, 3));
-        System.out.println(uf.connected(1, 4));
+        quTest();
     }
 
     public static void qfTest() {
@@ -77,5 +68,14 @@ public class C151 {
         qf.union(4, 5);
         System.out.println(qf.connected(0, 3));
         System.out.println(qf.connected(1, 4));
+    }
+
+    public static void quTest() {
+        QU qu = new QU(10);
+        qu.union(0, 2);
+        qu.union(2, 3);
+        qu.union(4, 5);
+        System.out.println(qu.connected(0, 3));
+        System.out.println(qu.connected(1, 4));
     }
 }
