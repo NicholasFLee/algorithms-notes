@@ -16,9 +16,11 @@ class QF {
     public int find(int p) { return id[p]; }
 
     public void union(int p, int q) {
-        if (connected(p, q)) return;
+        int pID = id[p];
+        int qID = id[q];
+        if (pID == qID) return;
         for (int i = 0; i < count; i++) {
-            if (id[i] == id[q]) id[i] = id[p];
+            if (id[i] == qID) id[i] = pID;
         }
         count--;
     }
