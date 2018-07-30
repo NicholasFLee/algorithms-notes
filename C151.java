@@ -19,8 +19,7 @@ class UF {
     public void union(int p, int q) {
         if (connected(p, q)) return;
         for (int i = 0; i < count; i++) {
-            if (id[i] == q) id[i] = id[p];
-            System.out.println(id[i]);
+            if (id[i] == id[q]) id[i] = id[p];
         }
     }
 }
@@ -28,10 +27,10 @@ class UF {
 public class C151 {
     public static void main(String[] args) {
         UF uf = new UF(10);
-        uf.union(1, 2);
+        uf.union(0, 2);
         uf.union(2, 3);
         uf.union(4, 5);
-        System.out.println(uf.connected(1, 3));
+        System.out.println(uf.connected(0, 3));
         System.out.println(uf.connected(1, 4));
     }
 }
