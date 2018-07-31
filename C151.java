@@ -133,9 +133,9 @@ class PCWQU {
 
 public class C151 {
     public static void main(String[] args) {
-        // qfTest();
-        // quTest();
-        // wquTest();
+        qfTest();
+        quTest();
+        wquTest();
         pcwquTest();
     }
 
