@@ -174,6 +174,6 @@ public class C151 {
         pcwqu.union(4, 5);
         System.out.println(pcwqu.connected(0, 3));
         System.out.println(pcwqu.connected(1, 4));
-        pcwqu.print();
+        // pcwqu.print();
     }
 }
