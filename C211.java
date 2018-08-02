@@ -53,10 +53,41 @@ class Insertion {
     }
 }
 
+// 2.3 希尔排序
+class Shell {
+    public static void sort(int[] a) {
+        int N = a.length;
+        int h = 1;
+        // 先取 h 在 N 之下的最大值
+        while (h < N/3) h = h*3 + 1;
+        // h 大于等于 1 的时候
+        while (h >= 1) {
+            // i 从 h 开始 递增
+            for (int i = h; i < N; i++) {
+                // 对比 i 和 i - h, 一轮之后, 如果 i - h 还大于 h, 则可以继续下去
+                for (int j = i; j >= h && a[j] < a[j-h]; j-=h) {
+                    int temp = a[j];
+                    a[j] = a[j-h];
+                    a[j-h] = temp;
+                }
+            }
+            // 以 h 为基数的一个循环走完之后, 除以 3 再继续
+            h /= 3;
+        }
+    }
+}
+
 public class C211 {
     public static void main(String[] args) {
         // selectionTest();
-        insertionTest();
+        // insertionTest();
+        shellTest();
+    }
+
+    public static void shellTest() {
+        int[] a = {3, 2, 1, 4};
+        Insertion.sort(a);
+        System.out.println(a[0]);
     }
 
     public static void insertionTest() {
