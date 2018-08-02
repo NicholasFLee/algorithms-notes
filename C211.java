@@ -39,9 +39,30 @@ class Selection {
     }
 }
 
+// 2.2 插入排序
+class Insertion {
+    public static void sort(int[] a) {
+        int N = a.length;
+        for (int i = 0; i < N; i++) {
+            for (int j = i; j > 0 && a[j] < a[j-1]; j--) {
+                int temp = a[j];
+                a[j] = a[j-1];
+                a[j-1] = temp;
+            }
+        }
+    }
+}
+
 public class C211 {
     public static void main(String[] args) {
-        selectionTest();
+        // selectionTest();
+        insertionTest();
+    }
+
+    public static void insertionTest() {
+        int[] a = {3, 2, 1, 4};
+        Insertion.sort(a);
+        System.out.println(a[0]);
     }
 
     public static void selectionTest() {
