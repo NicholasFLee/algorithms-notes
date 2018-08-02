@@ -23,6 +23,36 @@ class Date implements Comparable<Date> {
     }
 }
 
+// 2.1 选择排序
+class Selection {
+    public static void sort(int[] a) {
+        int N = a.length;
+        for (int i = 0; i < N; i++) {
+            int min = i;
+            for (int j = i+1; j < N; j++) {
+                if (a[j] < a[min]) min = j;
+            }
+            int temp = a[i];
+            a[i] = a[min];
+            a[min] = temp;
+        }
+    }
+}
+
 public class C211 {
-    
+    public static void main(String[] args) {
+        selectionTest();
+    }
+
+    public static void selectionTest() {
+        int[] a = {3, 2, 1, 4};
+        Selection.sort(a);
+        System.out.println(a[0]);
+    }
+
+    public static void dateTest() {
+        Date d1 = new Date(1, 2, 2006);
+        Date d2 = new Date(1, 2, 2008);
+        System.out.println(d2.compareTo(d1));
+    }
 }
