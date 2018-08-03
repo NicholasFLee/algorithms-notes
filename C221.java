@@ -1,8 +1,12 @@
-// 原地归并的抽象方法
+// 自顶向下归并排序
 class Merge {
+
+    private static int[] aux;
+
+    // 原地归并的抽象方法
     public static void merge(int[] a, int lo, int mid, int hi) {
         // 先把 a 复制一份
-        int[] aux = a.clone();
+        aux = a.clone();
         // [i...mid] 是第一个子数组
         int i = lo;
         // [mid+1...hi] 是第二个子数组
@@ -15,6 +19,19 @@ class Merge {
             else if (aux[i] <= aux[j]) a[k] = aux[i++];
             else if (aux[j] < aux[i]) a[k] = aux[j++];
         }
+    }
+
+    public static void sort(int[] a) {
+        // aux = a.clone();
+        sort(a, 0, a.length - 1);
+    }
+
+    private static void sort(int a[], int lo, int hi) {
+        if (hi <= lo) return;
+        int mid = lo + (hi-lo) / 2;
+        sort(a, lo, mid);
+        sort(a, mid+1, hi);
+        merge(a, lo, mid, hi);
     }
 }
 
