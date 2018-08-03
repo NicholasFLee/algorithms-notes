@@ -11,7 +11,7 @@ class Merge {
         int i = lo;
         // [mid+1...hi] 是第二个子数组
         int j = mid + 1;
-        for (int k = 0; k <= hi; k++) {
+        for (int k = lo; k <= hi; k++) {
             // 如果第一个数组用完了, 直接取第二个数组
             if (i > mid) a[k] = aux[j++];
             // 如果第二个数组用完了, 直接取第一个数组
@@ -37,7 +37,16 @@ class Merge {
 
 public class C221 {
     public static void main(String[] args) {
-        mergeTest();
+        // mergeTest();
+        mergeSortTest();
+    }
+
+    public static void mergeSortTest() {
+        int[] a = {4, 3, 0, 5, 2, 1};
+        Merge.sort(a);
+        for (int v : a) {
+            System.out.println(v);
+        }
     }
 
     public static void mergeTest() {
