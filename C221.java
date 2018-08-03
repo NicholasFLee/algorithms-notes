@@ -29,8 +29,12 @@ class Merge {
     private static void sort(int a[], int lo, int hi) {
         if (hi <= lo) return;
         int mid = lo + (hi-lo) / 2;
+        // 把数组分为 2 块
+        // 每一块递归到最后 sort(a, 0, 1)
+        // 然后排序 merge(a, 0, 0, 1)
         sort(a, lo, mid);
         sort(a, mid+1, hi);
+        // 最后再把 2 个排序好的数组排序
         merge(a, lo, mid, hi);
     }
 }
