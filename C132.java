@@ -217,6 +217,7 @@ class Deque2<T> {
     // auto grow
     private void resizeArray() {
         cap *= 2;
+        // place elements in the middle of the array
         int newStart = (cap/2) - (N/2);
         T[] newArray = (T[]) new Object[cap];
         for (int i = start + 1, j = newStart; i <= end; i++, j++) {
