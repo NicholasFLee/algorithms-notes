@@ -1,25 +1,12 @@
 // 自顶向下归并排序
 class Merge {
 
-    public static void sort(int[] a) {
-        sort(a, a.clone(), 0, a.length - 1);
-    }
-
-    private static void sort(int a[], int[] aux, int lo, int hi) {
-        if (hi <= lo) return;
-        int mid = lo + (hi-lo) / 2;
-        // 把数组分为 2 块
-        // 每一块递归到最后 sort(a, 0, 1)
-        // 然后排序 merge(a, 0, 0, 1)
-        sort(a, aux, lo, mid);
-        sort(a, aux, mid+1, hi);
-        // 最后再把 2 个排序好的数组排序
-        aux = a.clone();
-        merge(a, aux, lo, mid, hi);
-    }
+    private static int[] aux;
 
     // 原地归并的抽象方法
-    public static void merge(int[] a, int[]aux, int lo, int mid, int hi) {
+    public static void merge(int[] a, int lo, int mid, int hi) {
+        // 先把 a 复制一份
+        aux = a.clone();
         // [i...mid] 是第一个子数组
         int i = lo;
         // [mid+1...hi] 是第二个子数组
@@ -33,9 +20,26 @@ class Merge {
             else if (aux[j] < aux[i]) a[k] = aux[j++];
         }
     }
+
+    public static void sort(int[] a) {
+        // aux = a.clone();
+        sort(a, 0, a.length - 1);
+    }
+
+    private static void sort(int a[], int lo, int hi) {
+        if (hi <= lo) return;
+        int mid = lo + (hi-lo) / 2;
+        // 把数组分为 2 块
+        // 每一块递归到最后 sort(a, 0, 1)
+        // 然后排序 merge(a, 0, 0, 1)
+        sort(a, lo, mid);
+        sort(a, mid+1, hi);
+        // 最后再把 2 个排序好的数组排序
+        merge(a, lo, mid, hi);
+    }
 }
 
-public class C221 {
+public class c221test {
     public static void main(String[] args) {
         mergeSortTest();
     }
