@@ -1,6 +1,5 @@
 // 自顶向下归并排序
 class Merge {
-
     public static void sort(int[] a) {
         sort(a, a.clone(), 0, a.length - 1);
     }
