@@ -48,5 +48,14 @@ class Quick {
 
 public class C222 {
     public static void main(String[] args) {
+        quickTest();
+    }
+    
+    public static void quickTest() {
+        int[] a = {3, 2, 1, 4};
+        Quick.sort(a);
+        for (int i : a) {
+            System.out.println(i);
+        }
     }
 }
