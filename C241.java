@@ -11,6 +11,16 @@ class MaxPQ {
 
     public int size() { return N; }
 
+    // sort
+    public void sort() {
+        int n = N;
+        // for (int i = n/2; i >= 1; i--) sink(i); // make heap ordered
+        while (n > 1) {
+            exch(1, n--);
+            sink(1, n);
+        }
+    }
+
     public void insert(int v) {
         pq[++N] = v;
         swim(N);
@@ -19,7 +29,7 @@ class MaxPQ {
     public int delMax() {
         int max = pq[1];
         exch(1, N--);
-        sink(1);
+        sink(1, N);
         return max;
     }
 
@@ -30,7 +40,7 @@ class MaxPQ {
         }
     }
 
-    public void sink(int i) {
+    public void sink(int i, int N) {
         while (2*i <= N) {
             int j = 2*i;
             if (j < N && pq[j] < pq[j+1]) { j++; } // Get bigger child
@@ -68,6 +78,13 @@ public class C241 {
         mp.insert(4);
         mp.insert(3);
         mp.insert(1);
+        mp.insert(5);
+        mp.insert(6);
+        mp.insert(7);
+        mp.insert(8);
+        mp.insert(9);
+        System.out.println(mp);
+        mp.sort();
         System.out.println(mp);
     }
 }
