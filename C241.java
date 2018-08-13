@@ -19,7 +19,6 @@ class MaxPQ {
     public int delMax() {
         int max = pq[1];
         exch(1, N--);
-        pq[N+1] = null;
         sink(1);
         return max;
     }
@@ -41,15 +40,34 @@ class MaxPQ {
         }
     }
 
-    private exch(int i, int j) {
+    private void exch(int i, int j) {
         int t = pq[i];
         pq[i] = pq[j];
         pq[j] = t;
     }
 
+    @Override
+    public String toString() {
+        String res = "";
+        for (int i : pq) {
+            res = res + i + " ";
+        }
+        return res;
+    }
+
 }
 
 public class C241 {
+    public static void main(String[] args) {
+        maxPQTest();
+    }
 
-    
+    public static void maxPQTest() {
+        MaxPQ mp = new MaxPQ(10);
+        mp.insert(2);
+        mp.insert(4);
+        mp.insert(3);
+        mp.insert(1);
+        System.out.println(mp);
+    }
 }
