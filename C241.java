@@ -16,12 +16,12 @@ class MaxPQ {
         int n = N;
         // for (int i = n/2; i >= 1; i--) sink(i); // make heap ordered
         while (n > 1) {
-            exch(1, n--);
-            sink(1, n);
+            exch(1, n--); // 把最大的值放到堆最后一位, 然后把堆缩小一位
+            sink(1, n);   // 再找出剩余堆里最大的放在第一位
         }
     }
 
-    public void insert(int v) {
+    public void insert(int v) { 
         pq[++N] = v;
         swim(N);
     }
