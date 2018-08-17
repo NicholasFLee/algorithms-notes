@@ -45,25 +45,21 @@ class ST<Key extends Comparable<Key>, Value> {
         return null;
     }
 
-    public void deleteMin() {
+    public void deleteMin() { delete(min()); }
 
-    }
-
-    public void deleteMax() {
-
-    }
+    public void deleteMax() { delete(max()); }
 
     public int size(Key lo, Key hi) {
         return 0;
     }
 
     public Iterable<Key> keys(Key lo, Key hi) {
-        return null;
+        if (hi.compareTo(lo) < 0) { return 0; }
+        else if (contains(hi)) { return rank(hi) - rank(lo) + 1; }
+        else return rank(hi) - rank(lo);
     }
 
-    public Iterable<Key> keys() {
-        return null;
-    }
+    public Iterable<Key> keys() { return keys(min(), max()); }
 }
 
 public class C311 {
