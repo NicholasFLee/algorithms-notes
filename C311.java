@@ -1,67 +1,67 @@
 class ST<Key extends Comparable<Key>, Value> {
-    void put(Key k, Value v) {
+    public void put(Key k, Value v) {
 
     }
 
-    Value get(Key k) {
+    public Value get(Key k) {
         return null;
     }
 
-    void delete(Key k) {
+    public void delete(Key k) {
 
     }
 
-    boolean contains(Key k) {
+    public boolean contains(Key k) {
         return get(k) != null;
     }
 
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return size == 0;
     }
 
-    int size() { return 1; }
+    public int size() { return 1; }
 
-    Key min() {
+    public Key min() {
         return null;
     }
 
-    Key max() {
+    public Key max() {
         return null;
     }
 
-    Key floor(Key k) {
+    public Key floor(Key k) {
         return null;
     }
 
-    Key ceilling(Key k) {
+    public Key ceilling(Key k) {
         return null;
     }
 
-    int rank(Key k) {
+    public int rank(Key k) {
         return 0;
     }
 
-    Key select(int i) {
+    public Key select(int i) {
         return null;
     }
 
-    void deleteMin() {
+    public void deleteMin() {
 
     }
 
-    void deleteMax() {
+    public void deleteMax() {
 
     }
 
-    int size(Key lo, Key hi) {
+    public int size(Key lo, Key hi) {
         return 0;
     }
 
-    Iterable<Key> keys(Key lo, Key hi) {
+    public Iterable<Key> keys(Key lo, Key hi) {
         return null;
     }
 
-    Iterable<Key> keys() {
+    public Iterable<Key> keys() {
         return null;
     }
 }
