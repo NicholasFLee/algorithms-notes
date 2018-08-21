@@ -29,6 +29,14 @@ class SequentialSearchST<Key, Value> {
 }
 
 public class C311 {
+    public static void main(String[] args) {
+        sequentialSearchSTTest();
+    }
 
+    public static void sequentialSearchSTTest() {
+        SequentialSearchST<String, Integer> sst = new SequentialSearchST();
+        sst.put("first", 18);
+        System.out.println(sst.get("first"));
+    }
     
 }
