@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-class SequentialSearchST<Key, Value> {
+class SequentialSearchST<Key, Value> implements Iterable {
     private Node first;
     private int N = 0;
 
@@ -51,7 +51,7 @@ class SequentialSearchST<Key, Value> {
         return N;
     }
 
-    public Iterable<Key> keys() {
+    public Iterable keys() {
         return new KeyIterator();
     }
 
@@ -69,6 +69,17 @@ class SequentialSearchST<Key, Value> {
             last = n;
         }
     }
+
+    @Override
+    public String toString() {
+        String res = "";
+        Iterator<Key> itr = keys().iterator();
+        while (itr.hasNext()) {
+            res = res + itr.next() + " -> ";
+            res = res + get(itr.next()) + ".\n";
+        }
+        return res;
+    }
 }
 
 public class C311 {
@@ -80,6 +91,8 @@ public class C311 {
         SequentialSearchST<String, Integer> sst = new SequentialSearchST();
         sst.put("first", 18);
         System.out.println(sst.get("first"));
+        sst.put("second", 18);
+        System.out.println(sst);
     }
     
 }
