@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-class SequentialSearchST<Key, Value> implements Iterable {
+class SequentialSearchST<Key, Value> {
     private Node first;
     private int N = 0;
 
@@ -16,7 +16,7 @@ class SequentialSearchST<Key, Value> implements Iterable {
         }
     }
 
-    private class KeyIterator implements Iterator {
+    private class KeyIterator implements Iterator<Key> {
         private Node n = first;
         @Override
         public boolean hasNext() {
@@ -24,7 +24,7 @@ class SequentialSearchST<Key, Value> implements Iterable {
         }
 
         @Override
-        public Object next() {
+        public Key next() {
             Key res = n.key;
             n = n.next;
             return res;
@@ -39,7 +39,7 @@ class SequentialSearchST<Key, Value> implements Iterable {
 
     public void put (Key k, Value v) {
         for (Node x = first; x != null; x = x.next)
-            if (x.key.equals(k)) { 
+            if (x.key.equals(k)) {
                 x.val = v; 
                 return; 
             }
@@ -51,7 +51,7 @@ class SequentialSearchST<Key, Value> implements Iterable {
         return N;
     }
 
-    public Iterable keys() {
+    public Iterator keys() {
         return new KeyIterator();
     }
 
@@ -73,10 +73,11 @@ class SequentialSearchST<Key, Value> implements Iterable {
     @Override
     public String toString() {
         String res = "";
-        Iterator<Key> itr = keys().iterator();
+        Iterator<Key> itr = keys();
         while (itr.hasNext()) {
-            res = res + itr.next() + " -> ";
-            res = res + get(itr.next()) + ".\n";
+            Key k = itr.next();
+            res = res + k + " -> ";
+            res = res + get(k) + ".\n";
         }
         return res;
     }
@@ -90,8 +91,8 @@ public class C311 {
     public static void sequentialSearchSTTest() {
         SequentialSearchST<String, Integer> sst = new SequentialSearchST();
         sst.put("first", 18);
-        System.out.println(sst.get("first"));
         sst.put("second", 18);
+        sst.put("trois", 19);
         System.out.println(sst);
     }
     
