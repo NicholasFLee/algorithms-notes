@@ -83,6 +83,33 @@ class SequentialSearchST<Key, Value> {
     }
 }
 
+class BinarySearchST<Key extends Comparable<Key>, Value> {
+    private Key[] keys;
+    private Value[] vals;
+    private int N;
+    public BinarySearchST(int capacity) {
+        keys = (Key[]) new Object[capacity];
+        vals = (Value[]) new Object[capacity];
+    }
+
+    public int size() {
+        return N;
+    }
+
+    public Value get(Key k) {
+        return null;
+    }
+
+    public void put(Key k, Value v) {
+
+    }
+
+    public void delete(Key k) {
+
+    }
+}
+
+
 public class C311 {
     public static void main(String[] args) {
         sequentialSearchSTTest();
