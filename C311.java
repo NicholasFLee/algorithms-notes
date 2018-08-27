@@ -96,16 +96,42 @@ class BinarySearchST<Key extends Comparable<Key>, Value> {
         return N;
     }
 
+    public int rank(Key k) {
+        int lo = 0, hi = N - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            int cmp = k.compareTo(keys[mid]);
+            if (cmp < 0) hi = mid - 1;
+            else if (cmp > 0) hi = mid + 1;
+            else return mid;
+        }
+        return lo;
+    }
+
     public Value get(Key k) {
-        return null;
+        if (N == 0) return null;
+        int i = rank(k);
+        if (i < N && keys[i].compareTo(k) == 0) return vals[i];
+        else return null;
     }
 
     public void put(Key k, Value v) {
-
+        int i = rank(k);
+        if (i < N && keys[i].compareTo(key) == 0) {
+            vals[i] = val;
+            return;
+        }
+        for (int j = N; j > i; j--) {
+            keys[j] = keys[j-1];
+            vals[j] = vals[j-1];
+        }
+        keys[i] = k;
+        vals[i] = v;
+        N++;
     }
 
     public void delete(Key k) {
-
+        
     }
 }
 
