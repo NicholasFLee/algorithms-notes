@@ -88,7 +88,7 @@ class BinarySearchST<Key extends Comparable<Key>, Value> {
     private Value[] vals;
     private int N;
     public BinarySearchST(int capacity) {
-        keys = (Key[]) new Object[capacity];
+        keys = (Key[]) new Comparable[capacity];
         vals = (Value[]) new Object[capacity];
     }
 
@@ -117,8 +117,8 @@ class BinarySearchST<Key extends Comparable<Key>, Value> {
 
     public void put(Key k, Value v) {
         int i = rank(k);
-        if (i < N && keys[i].compareTo(key) == 0) {
-            vals[i] = val;
+        if (i < N && keys[i].compareTo(k) == 0) {
+            vals[i] = v;
             return;
         }
         for (int j = N; j > i; j--) {
@@ -131,14 +131,19 @@ class BinarySearchST<Key extends Comparable<Key>, Value> {
     }
 
     public void delete(Key k) {
-        
+        if (N == 0) return;
+        int i = rank(k);
+        keys[i] = null;
+        vals[i] = null;
+        N--;
     }
 }
 
 
 public class C311 {
     public static void main(String[] args) {
-        sequentialSearchSTTest();
+        // sequentialSearchSTTest();
+        binarySearchSTTest();
     }
 
     public static void sequentialSearchSTTest() {
@@ -147,6 +152,14 @@ public class C311 {
         sst.put("second", 18);
         sst.put("trois", 19);
         System.out.println(sst);
+    }
+
+    public static void binarySearchSTTest() {
+        BinarySearchST<String, Integer> bst = new BinarySearchST(10);
+        bst.put("li", 18);
+        bst.put("ly", 19);
+        System.out.println(bst.get("li"));
+        System.out.println(bst.get("ly"));
     }
     
 }
