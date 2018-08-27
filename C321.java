@@ -24,12 +24,16 @@ class BST<Key extends Comparable<Key>, Value> {
     private Value get(Node n, Key key) {
         if (n == null) { return null; }
         if (n.key.compareTo(key) == 0) return n.value;
-        else if (n.key.compareTo(key) < 0) return get(n.left, key);
-        else return get(n.right, key);
+        else if (n.key.compareTo(key) < 0) return get(n.right, key);
+        else return get(n.left, key);
     }
 
-    public void put(Key key, Value value) {
-
+    public void put(Key key, Value value) { root = put(root, key, value); }
+    private Node put(Node n, Key key, Value value) {
+        if (n == null) return new Node(key, value, 1);
+        if (n.key.compareTo(key) < 0) put(n.right, key, value);
+        else if (n.key.compareTo(key) > 0) put(n.left, key, value);
+        else n.value = value;
     }
 }
 
