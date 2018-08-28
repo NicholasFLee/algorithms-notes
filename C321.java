@@ -52,5 +52,6 @@ public class C321 {
         bst.put(2, 19);
         bst.put(3, 20);
         System.out.println(bst.get(2));
+        System.out.println(bst.size());
     }
 }
