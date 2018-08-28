@@ -62,6 +62,23 @@ class BST<Key extends Comparable<Key>, Value> {
         else return n;
     }
 
+    public Key select(int i) { return select(root, i).key; }
+    private Node select(Node n, int i) {
+        if (n == null) return null;
+        int s = size(n.left);
+        if (i > s) { return select(n.right, i - s - 1); }
+        else if (i < s) { return select(n.left, i); }
+        else return n;
+    }
+
+    public int rank(Key k) { return rank(k, root); }
+    private int rank(Key k, Node n) {
+        if (n == null) return 0;
+        int cmp = k.compareTo(n.key);
+        if (cmp < 0) { return rank(k, n.left); }
+        else if (cmp > 0) { return 1 + size(n.left) + rank(k, n.right); }
+        else return size(n.left);
+    }
 }
 
 public class C321 {
@@ -71,12 +88,14 @@ public class C321 {
 
     public static void BSTTest() {
         BST<Integer, Integer> bst = new BST();
-        bst.put(1, 18);
         bst.put(2, 19);
+        bst.put(1, 18);
         bst.put(3, 20);
         System.out.println(bst.get(2));
         System.out.println(bst.size());
         System.out.println(bst.min());
         System.out.println(bst.floor(2));
+        System.out.println(bst.select(2));
+        System.out.println(bst.rank(2));
     }
 }
