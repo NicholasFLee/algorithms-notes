@@ -1,3 +1,5 @@
+import java.util.Queue;
+
 class BST<Key extends Comparable<Key>, Value> {
     private Node root;
 
@@ -45,6 +47,13 @@ class BST<Key extends Comparable<Key>, Value> {
         if (n == null) return null;
         if (n.left == null) { return n; }
         return min(n.left);
+    }
+
+    public Key max() { return max(root).key; }
+    private Node max(Node n) {
+        if (n == null) return null;
+        if (n.right == null) { return n; }
+        return max(n.right);
     }
 
     public Key floor(Key k) {
@@ -104,6 +113,24 @@ class BST<Key extends Comparable<Key>, Value> {
         }
         n.N = size(n.left) + size(n.right) + 1;
         return n;
+    }
+
+    public Iterable<Key> keys() {
+        return keys(min(), max());
+    }
+
+    public Iterable<Key> keys(Key lo, Key hi) {
+        Queue<Key> queue = new Queue<Key>();
+        keys(root, queue, lo, hi);
+        return queue;
+    }
+    private void keys(Node n, Queue<Key> queue, Key lo, Key hi) {
+        if (n == null) return;
+        int cmplo = lo.compareTo(n.key);
+        int cmphi = hi.compareTo(n.key);
+        if (cmplo < 0) keys(n.left, queue, lo, hi);
+        if (cmplo <=0 && cmphi >= 0) queue.add(n.key);
+        if (cmphi > 0) keys(n.right, queue, lo, hi);
     }
 }
 
