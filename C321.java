@@ -39,6 +39,29 @@ class BST<Key extends Comparable<Key>, Value> {
         n.N = size(n.left) + size(n.right) + 1;
         return n;
     }
+
+    public Key min() { return min(root).key; }
+    private Node min(Node n) {
+        if (n == null) return null;
+        if (n.left == null) { return n; }
+        return min(n.left);
+    }
+
+    public Key floor(Key k) {
+        Node n = floor(root, k);
+        if (n == null) return null;
+        return n.key;
+    }
+    private Node floor(Node n, Key k) {
+        if (n == null) return null;
+        int cmp = k.compareTo(n.key);
+        if (cmp == 0) return n;
+        else if (cmp < 0) return floor(n.left, k);
+        Node t = floor(n.right, k);
+        if (t != null) return t;
+        else return n;
+    }
+
 }
 
 public class C321 {
@@ -53,5 +76,7 @@ public class C321 {
         bst.put(3, 20);
         System.out.println(bst.get(2));
         System.out.println(bst.size());
+        System.out.println(bst.min());
+        System.out.println(bst.floor(2));
     }
 }
