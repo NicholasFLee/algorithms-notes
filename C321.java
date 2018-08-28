@@ -79,6 +79,32 @@ class BST<Key extends Comparable<Key>, Value> {
         else if (cmp > 0) { return 1 + size(n.left) + rank(k, n.right); }
         else return size(n.left);
     }
+
+    public void deleteMin() { root = deleteMin(root); }
+    private Node deleteMin(Node n) {
+        if (n.left == null) return n.right;
+        n.left = deleteMin(n.left);
+        n.N = size(n.left) + size(n.right) + 1;
+        return n;
+    }
+
+    public void delete(Key k) { root = delete(root, k); }
+    private Node delete(Node n, Key k) {
+        if (n == null) return null;
+        int cmp = k.compareTo(n.key);
+        if (cmp < 0) n.left = delete(n.left, k);
+        else if (cmp > 0) n.right = delete(n.right, k);
+        else {
+            if (n.right == null) return n.left;
+            if (n.left == null) return n.right;
+            Node t = n;
+            n = min(t.right);
+            n.right = deleteMin(t.right);
+            n.left = t.left;
+        }
+        n.N = size(n.left) + size(n.right) + 1;
+        return n;
+    }
 }
 
 public class C321 {
@@ -97,5 +123,7 @@ public class C321 {
         System.out.println(bst.floor(2));
         System.out.println(bst.select(2));
         System.out.println(bst.rank(2));
+        bst.delete(2);
+        System.out.println(bst.get(2));
     }
 }
