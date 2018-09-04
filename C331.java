@@ -51,7 +51,10 @@ class RedBlackBST<Key extends Comparable<Key>, Value> {
         h.right.color = BLACK;
     }
 
-    private int size(Node h) { return h.N; }
+    private int size(Node h) {
+        if (h == null) return 0;
+        return h.N; 
+    }
 
     public void put(Key key, Value val) {
         root = put(root, key, val);
@@ -73,9 +76,36 @@ class RedBlackBST<Key extends Comparable<Key>, Value> {
         h.N = size(h.left) + size(h.right) + 1;
         return h;
     }
+
+    public boolean contains(Key key) { return contains(root, key); }
+    private boolean contains(Node n, Key k) {
+        if (n == null) return false;
+        int cmp = k.compareTo(n.key);
+        if (cmp < 0) return contains(n.left, k);
+        else if (cmp > 0) return contains(n.right, k);
+        else return true;
+    }
+
+    public Value get(Key key) {
+        if (!contains(key)) return null;
+        return get(root, key).val;
+    }
+    private Node get(Node n, Key k) {
+        int cmp = k.compareTo(n.key);
+        if (cmp < 0) return get(n.left, k);
+        else if (cmp > 0) return get(n.right, k);
+        else return n;
+    }
 }
 
 public class C331 {
     public static void main(String[] args) {
+        redBlackBSTTest();
+    }
+    public static void redBlackBSTTest() {
+        RedBlackBST<Integer, Integer> bst = new RedBlackBST();
+        bst.put(1, 1);
+        bst.put(2, 2);
+        System.out.println(bst.get(1));
     }
 }
