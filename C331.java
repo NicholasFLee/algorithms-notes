@@ -20,6 +20,34 @@ class RedBlackBST<Key extends Comparable<Key>, Value> {
         if (n == null) return false;
         return n.color == RED;
     }
+
+    Node rotateLeft(Node h) {
+        Node x = h.right;
+        h.right = x.left;
+        x.left = h;
+        x.color = h.color;
+        h.color = RED;
+        x.N = h.N;
+        h.N = 1 + h.left.N + h.right.N;
+        return x;
+    }
+
+    Node rotateRight(Node h) {
+        Node x = h.left;
+        h.left = x.right;
+        x.right = h;
+        x.color = h.color;
+        h.color = RED;
+        x.N = h.N;
+        h.N = 1 + h.left.N + h.right.N;
+        return x; 
+    }
+
+    void flipColors(Node h) {
+        h.color = RED;
+        h.left.color = BLACK;
+        h.right.color = BLACK;
+    }
 }
 
 public class C331 {
