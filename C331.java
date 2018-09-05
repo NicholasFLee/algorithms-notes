@@ -1,3 +1,5 @@
+import java.util.Hashtable;
+
 class RedBlackBST<Key extends Comparable<Key>, Value> {
     private static final boolean RED = true;
     private static final boolean BLACK = false;
