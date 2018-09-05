@@ -21,6 +21,15 @@ class SeparateChainingHashST<Key, Value> {
 
 public class C341 {
     public static void main(String[] args) {
+        separateChainingHashSTTest();
+    }
+
+    public static void separateChainingHashSTTest() {
+        SeparateChainingHashST<Integer, Integer> st = new SeparateChainingHashST(11);
+        st.put(1, 2);
+        st.put(3, 4);
+        st.put(5, 6);
+        System.out.println(st.get(3));
     }
 
     public static void test() {
