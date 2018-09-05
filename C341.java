@@ -15,10 +15,15 @@ class SeparateChainingHashST<Key, Value> {
     public Value get(Key key) { return (Value) st[hash(key)].get(key); }
 
     public void put(Key key, Value val) { st[hash(key)].put(key, val); }
+
+    public void delete(Key key) { st[hash(key)].delete(key); }
 }
 
 public class C341 {
     public static void main(String[] args) {
+    }
+
+    public static void test() {
         int hash = 17;
         String one = "10", two = "20", three = "30";
         hash = hash * 31 + one.hashCode();
