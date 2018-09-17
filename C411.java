@@ -21,21 +21,16 @@ class Graph {
         }
     }
 
-    public int V() {
-        return 0;
-    }
-
-    public int E() {
-        return 0;
-    }
+    public int V() { return V; }
+    public int E() { return E; }
 
     public void addEdge(int v, int w) {
-
+        adj[v].add(w);
+        adj[w].add(v);
+        E++;
     }
 
-    public Iterable<Integer> adj(int v) {
-        return null;
-    }
+    public Iterable<Integer> adj(int v) { return adj[v]; }
 
     @Override
     public String toString() {
