@@ -1,14 +1,24 @@
 class Graph {
     private final int V;
     private int E;
+    private Bag<Integer>[] adj;
 
-
-    Graph(int V) {
-        
+    public Graph(int V) {
+        this.V = V;
+        this.E = 0;
+        for (int v = 0; v < V; v++) {
+            adj[v] = new Bag<Integer>();
+        }
     }
 
-    Graph(In in) {
-
+    public Graph(In in) {
+        this(in.readInt());
+        int E = in.readInt();
+        for (int i = 0; i < E; i++) {
+            int v = in.readInt();
+            int w = in.readInt();
+            addEdge(v, w);
+        }
     }
 
     public int V() {
