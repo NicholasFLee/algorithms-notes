@@ -1,4 +1,8 @@
 class Graph {
+    private final int V;
+    private int E;
+
+
     Graph(int V) {
         
     }
